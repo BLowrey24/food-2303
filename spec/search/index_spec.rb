@@ -22,5 +22,18 @@ RSpec.describe "Search action", type: :feature do
       expect(page).to have_content("Ingredients:")
       expect(page).to have_content("GTIN/UPC:")
     end
+
+    it "Can search for something else other than sweet potatoes" do
+      visit "/"
+      fill_in "q", with: "cheddar cheese"
+      click_button "Search"
+
+      expect(page).to have_content("Food List")
+      expect(page).to have_content("Overall total:")
+      expect(page).to have_content("Brand:")
+      expect(page).to have_content("Description:")
+      expect(page).to have_content("Ingredients:")
+      expect(page).to have_content("GTIN/UPC:")
+    end
   end
 end
